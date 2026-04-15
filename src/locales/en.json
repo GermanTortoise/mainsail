@@ -206,9 +206,11 @@
     },
     "Freehand": {
         "Acceleration": "Acceleration",
+        "BedTemp": "Bed Temperature",
         "Canvas": "Canvas",
         "Controls": "Controls",
         "CurrentLayer": "Current Layer",
+        "ExtruderTemp": "Extruder Temperature",
         "Extruding": "Extruding",
         "Filename": "Filename",
         "Framerate": "Framerate",

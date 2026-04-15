@@ -19,6 +19,8 @@ export interface GuiFreehandState {
     zMin: number
     zMax: number
     acceleration: number
+    extruderTemp: number
+    bedTemp: number
     toggleShift: boolean
     layerFade: number
     linePx: number

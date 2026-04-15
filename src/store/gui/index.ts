@@ -39,6 +39,8 @@ export const getDefaultState = (): GuiState => {
             zMin: 0,
             zMax: 180,
             acceleration: 3000,
+            extruderTemp: 200,
+            bedTemp: 60,
             toggleShift: false,
             layerFade: 0.55,
             linePx: 3,
