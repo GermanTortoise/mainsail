@@ -276,9 +276,7 @@ interface LayerSegment {
     y2: number
 }
 
-// const STARTUP_GCODE = ['G90', 'M83', 'G28'].join('\n')
-
-// const SHUTDOWN_GCODE = ['M104 S0', 'M140 S0', 'M107', 'M84'].join('\n')
+const SHUTDOWN_GCODE = ['M104 S0', 'M140 S0', 'M107', 'M84'].join('\n')
 
 const SECONDS_IN_MINUTE = 60
 
