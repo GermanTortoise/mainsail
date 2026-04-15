@@ -7,7 +7,7 @@ import { GuiNotificationState } from '@/store/gui/notifications/types'
 import { FileStateFile, FileStateGcodefile } from '@/store/files/types'
 import { GuiNavigationState } from '@/store/gui/navigation/types'
 
-export interface GuiDrawState {
+export interface GuiFreehandState {
     speed: number
     layerHeight: number
     lineWidth: number
@@ -25,7 +25,7 @@ export interface GuiDrawState {
 }
 
 export interface GuiState {
-    draw: GuiDrawState
+    freehand: GuiFreehandState
     general: {
         printername: string
         language: string

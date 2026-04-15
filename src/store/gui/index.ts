@@ -27,7 +27,7 @@ import { heightmap } from '@/store/gui/heightmap'
 
 export const getDefaultState = (): GuiState => {
     return {
-        draw: {
+        freehand: {
             speed: 100,
             layerHeight: 0.2,
             lineWidth: 0.6,

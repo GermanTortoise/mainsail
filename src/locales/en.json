@@ -204,12 +204,13 @@
             "Timelapse": "Timelapse"
         }
     },
-    "Draw": {
+    "Freehand": {
         "Acceleration": "Acceleration",
         "Canvas": "Canvas",
         "Controls": "Controls",
         "CurrentLayer": "Current Layer",
         "Extruding": "Extruding",
+        "Filename": "Filename",
         "Framerate": "Framerate",
         "KeyHints": "WASD: Move | Space: Layer Up | Shift: Extrude | Q: Stop",
         "LayerFade": "Layer Fade",
@@ -217,9 +218,15 @@
         "LinePx": "Line Width (px)",
         "LineWidth": "Line Width (mm)",
         "NotRunning": "Not Running",
+        "Playback": "Playback",
+        "PlaybackFile": "G-code File",
+        "PlaybackStart": "Print File",
+        "Record": "Record",
+        "RecordSaved": "Drawing saved as {filename}",
+        "Recording": "Recording",
         "Running": "Running",
         "Settings": "Settings",
-        "ShiftToggle": "Toggle Shift Mode",
+        "ShiftToggle": "Toggle Shift",
         "Speed": "Speed",
         "Start": "Start",
         "Status": "Status",
@@ -1122,7 +1129,7 @@
     "Router": {
         "Console": "Console",
         "Dashboard": "Dashboard",
-        "Draw": "Draw",
+        "Freehand": "Freehand",
         "G-Code Files": "G-Code Files",
         "G-Code Viewer": "G-Code Viewer",
         "Heightmap": "Heightmap",
