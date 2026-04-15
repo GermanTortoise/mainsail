@@ -635,13 +635,13 @@ export default class PageFreehand extends Mixins(BaseMixin) {
         this.$nextTick(() => this.canvasContainer?.focus())
     }
 
-    stop() {
+    async stop() {
         if (!this.running) return
         this.flushGcodeBuffer()
         this.sendGcode(SHUTDOWN_GCODE)
 
         if (this.recording && this.recordedGcode.length > 0) {
-            this.saveRecording()
+            await this.saveRecording()
         }
 
         this.stopInternal()
@@ -681,10 +681,12 @@ export default class PageFreehand extends Mixins(BaseMixin) {
 
     async saveRecording() {
         const header = this.buildHeader()
-        const content = header + '\n' + this.recordedGcode.join('\n') + '\n'
-        const safeName = this.recordFilename.replace(/[^a-zA-Z0-9_-]/g, '_') || 'drawing'
+        this.recordedGcode.unshift(header)
+        const content = this.recordedGcode.join('\n') + '\n'
+        const safeName = this.recordFilename.replace(/[^a-zA-Z0-9_-]/g, '_') || 'freehand'
         const filename = `${safeName}.gcode`
-        const file = new File([content], filename, { type: 'text/plain' })
+        const blob = new Blob([content], { type: 'text/plain' })
+        const file = new File([blob], filename)
 
         await this.$store.dispatch('files/uploadFile', { file, path: '', root: 'gcodes' })
     }
