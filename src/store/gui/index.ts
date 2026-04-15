@@ -27,6 +27,22 @@ import { heightmap } from '@/store/gui/heightmap'
 
 export const getDefaultState = (): GuiState => {
     return {
+        draw: {
+            speed: 100,
+            layerHeight: 0.2,
+            lineWidth: 0.6,
+            framerate: 30,
+            xMin: 10,
+            xMax: 200,
+            yMin: 10,
+            yMax: 200,
+            zMin: 0,
+            zMax: 180,
+            acceleration: 3000,
+            toggleShift: false,
+            layerFade: 0.55,
+            linePx: 3,
+        },
         general: {
             printername: '',
             language: 'en',

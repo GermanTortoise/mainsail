@@ -7,7 +7,25 @@ import { GuiNotificationState } from '@/store/gui/notifications/types'
 import { FileStateFile, FileStateGcodefile } from '@/store/files/types'
 import { GuiNavigationState } from '@/store/gui/navigation/types'
 
+export interface GuiDrawState {
+    speed: number
+    layerHeight: number
+    lineWidth: number
+    framerate: number
+    xMin: number
+    xMax: number
+    yMin: number
+    yMax: number
+    zMin: number
+    zMax: number
+    acceleration: number
+    toggleShift: boolean
+    layerFade: number
+    linePx: number
+}
+
 export interface GuiState {
+    draw: GuiDrawState
     general: {
         printername: string
         language: string
