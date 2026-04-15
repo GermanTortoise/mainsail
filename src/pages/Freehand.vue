@@ -51,24 +51,6 @@
                             hide-details
                             suffix=".gcode"
                             class="mb-4" />
-                        <v-divider class="mb-4" />
-                        <div class="text-subtitle-2 mb-2">{{ $t('Freehand.Playback') }}</div>
-                        <v-text-field
-                            v-model="playbackFilename"
-                            :label="$t('Freehand.PlaybackFile')"
-                            :disabled="running"
-                            dense
-                            outlined
-                            hide-details
-                            class="mb-2" />
-                        <v-btn
-                            color="primary"
-                            block
-                            :disabled="running || !klippyIsConnected || !playbackFilename"
-                            @click="startPlayback">
-                            <v-icon left small>{{ mdiPlay }}</v-icon>
-                            {{ $t('Freehand.PlaybackStart') }}
-                        </v-btn>
                         <v-divider class="my-4" />
                         <div class="text-subtitle-2 mb-2">{{ $t('Freehand.Status') }}</div>
                         <div class="d-flex justify-space-between">
@@ -260,7 +242,7 @@ import { Component, Mixins, Ref, Watch } from 'vue-property-decorator'
 import { Debounce } from 'vue-debounce-decorator'
 import BaseMixin from '@/components/mixins/base'
 import NumberInput from '@/components/inputs/NumberInput.vue'
-import { mdiCircle, mdiCircleOutline, mdiPlay } from '@mdi/js'
+import { mdiCircle, mdiCircleOutline } from '@mdi/js'
 import { GuiFreehandState } from '@/store/gui/types'
 
 interface LayerSegment {
@@ -285,7 +267,6 @@ const FLUSH_INTERVAL = 3
 export default class PageFreehand extends Mixins(BaseMixin) {
     mdiCircle = mdiCircle
     mdiCircleOutline = mdiCircleOutline
-    mdiPlay = mdiPlay
 
     @Ref('canvas') readonly canvasRef!: HTMLCanvasElement
     @Ref('canvasContainer') readonly canvasContainer!: HTMLElement
@@ -308,7 +289,6 @@ export default class PageFreehand extends Mixins(BaseMixin) {
     recording = false
     recordFilename = 'drawing'
     recordedGcode: string[] = []
-    playbackFilename = ''
 
     // --- Store-backed settings ---
 
@@ -643,7 +623,7 @@ export default class PageFreehand extends Mixins(BaseMixin) {
         this.pressedKeys.clear()
     }
 
-    // --- Recording / Playback ---
+    // --- Recording ---
 
     async saveRecording() {
         const content = this.recordedGcode.join('\n') + '\n'
@@ -652,12 +632,6 @@ export default class PageFreehand extends Mixins(BaseMixin) {
         const file = new File([content], filename, { type: 'text/plain' })
 
         await this.$store.dispatch('files/uploadFile', { file, path: '', root: 'gcodes' })
-        this.playbackFilename = filename
-    }
-
-    startPlayback() {
-        if (!this.playbackFilename || !this.klippyIsConnected || this.running) return
-        this.$socket.emit('printer.print.start', { filename: this.playbackFilename })
     }
 
     // --- Frame tick ---
